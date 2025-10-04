@@ -1,5 +1,5 @@
 'use client'
-
+import Image from 'next/image';
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { 
@@ -32,8 +32,14 @@ export default function Sidebar() {
       {/* Logo Section */}
       <div className="p-6 border-b border-gray-100" suppressHydrationWarning={true}>
         <div className="flex items-center space-x-3" suppressHydrationWarning={true}>
-          <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-orange-500 rounded-lg flex items-center justify-center shadow-lg" suppressHydrationWarning={true}>
-            <MdHome className="text-white text-xl" />
+          <div className="w-10 h-10 rounded-lg overflow-hidden border-2 border-red-500 shadow-lg" suppressHydrationWarning={true}>
+            <Image 
+              src="/logo/logo.jpg"
+              alt="Horoo Logo"
+              width={40}
+              height={40}
+              className="w-full h-full object-cover"
+            />
           </div>
           <div suppressHydrationWarning={true}>
             <h1 className="text-2xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
