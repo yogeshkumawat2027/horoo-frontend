@@ -522,7 +522,7 @@ export default function AddRoom() {
                 <input
                   type="text"
                   value={area}
-                  onChange={(e) => handleNearbyAreaChange(index, e.target.value)}
+                  onChange={(e) => updateNearbyArea(index, e.target.value)}
                   className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   placeholder="Enter nearby area"
                 />
