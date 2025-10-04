@@ -8,7 +8,7 @@ import axios from 'axios';
 
 export default function HouseManagement() {
   const router = useRouter();
-  const api = "http://localhost:5000/api";
+  const api = "https://horoo-backend.onrender.com/api";
   const [houses, setHouses] = useState([]);
   const [loading, setLoading] = useState(false);
   

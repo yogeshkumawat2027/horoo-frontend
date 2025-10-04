@@ -24,7 +24,9 @@ export default function AddLocation() {
   const [areas, setAreas] = useState([]);
   const [allCities, setAllCities] = useState([]);
 
-  const api = "http://localhost:5000/api";
+  const api = "https://horoo-backend.onrender.com/api";
+
+
 
   // Fetch all states
   const fetchStates = async () => {

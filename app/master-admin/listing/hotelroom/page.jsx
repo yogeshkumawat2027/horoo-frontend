@@ -16,7 +16,7 @@ import axios from "axios";
 
 export default function HotelRoomPage() {
   const router = useRouter();
-  const api = "http://localhost:5000/api";
+  const api = "https://horoo-backend.onrender.com/api";
   const [hotelRooms, setHotelRooms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showFilters, setShowFilters] = useState(false);

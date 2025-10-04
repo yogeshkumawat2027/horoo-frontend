@@ -18,7 +18,7 @@ import QuillEditor from '../../../../../components/QuillEditor';
 
 export default function AddCommercial() {
   const router = useRouter();
-  const api = "http://localhost:5000/api";
+  const api = "https://horoo-backend.onrender.com/api";
 
   // Form state
   const [formData, setFormData] = useState({

@@ -24,7 +24,7 @@ import {
 export default function ShowMess() {
   const router = useRouter();
   const params = useParams();
-  const api = "http://localhost:5000/api";
+  const api = "https://horoo-backend.onrender.com/api";
   const messId = params.id;
 
   const [mess, setMess] = useState(null);

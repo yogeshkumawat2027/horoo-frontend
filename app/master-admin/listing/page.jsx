@@ -15,7 +15,7 @@ import {
 
 export default function ListingPage() {
   const router = useRouter();
-  const api = "http://localhost:5000/api";
+  const api = "https://horoo-backend.onrender.com/api";
   
   // State for all property counts
   const [propertyCounts, setPropertyCounts] = useState({

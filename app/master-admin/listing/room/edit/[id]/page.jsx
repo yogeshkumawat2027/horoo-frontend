@@ -20,7 +20,7 @@ import QuillEditor from '../../../../../../components/QuillEditor';
 export default function EditRoom() {
   const router = useRouter();
   const params = useParams();
-  const api = "http://localhost:5000/api";
+  const api = "https://horoo-backend.onrender.com/api";
   const roomId = params.id;
 
   // Form state
