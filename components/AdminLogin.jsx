@@ -47,15 +47,15 @@ export default function AdminLogin({ onLogin }) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-purple-700 to-pink-600">
+    <div className="min-h-screen flex items-center justify-center bg-transparent">
       <div className="max-w-md w-full space-y-8 p-8">
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 border border-orange-200">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
               <FaUser className="text-2xl text-white" />
             </div>
-            <h2 className="text-3xl font-bold text-gray-900">Master Admin</h2>
-            <p className="text-gray-600 mt-2">Sign in to access the admin panel</p>
+            <h2 className="text-3xl font-bold text-orange-600">Master Admin</h2>
+            <p className="text-orange-500 mt-2">Sign in to access the admin panel</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -78,7 +78,7 @@ export default function AdminLogin({ onLogin }) {
                     ...prev,
                     username: e.target.value
                   }))}
-                  className="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   placeholder="Enter username"
                 />
                 <FaUser className="absolute left-4 top-4 text-gray-400" />
@@ -98,7 +98,7 @@ export default function AdminLogin({ onLogin }) {
                     ...prev,
                     password: e.target.value
                   }))}
-                  className="w-full px-4 py-3 pl-12 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-3 pl-12 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   placeholder="Enter password"
                 />
                 <FaLock className="absolute left-4 top-4 text-gray-400" />
@@ -115,7 +115,7 @@ export default function AdminLogin({ onLogin }) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-purple-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition duration-200"
+              className="w-full bg-orange-500 text-white py-3 px-4 rounded-lg font-medium hover:bg-orange-600 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition duration-200"
             >
               {loading ? 'Signing in...' : 'Sign In'}
             </button>
