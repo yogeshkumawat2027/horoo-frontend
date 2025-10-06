@@ -10,10 +10,11 @@ import {
   MdPeople,
   MdHome,
   MdSupportAgent, 
-  MdPerson
+  MdPerson,
+  MdLogout
 } from "react-icons/md";
 
-export default function Sidebar() {
+export default function Sidebar({ logout, adminData }) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -86,6 +87,30 @@ export default function Sidebar() {
 
       {/* Bottom Section */}
       <div className="absolute bottom-4 left-4 right-4" suppressHydrationWarning={true}>
+        {/* Admin Info */}
+        {adminData && (
+          <div className="bg-orange-50 rounded-xl p-3 border border-orange-200 mb-3" suppressHydrationWarning={true}>
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
+                <MdPerson className="text-white text-sm" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-orange-800 text-sm">{adminData.name}</h3>
+                <p className="text-orange-600 text-xs">@{adminData.username}</p>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        {/* Logout Button */}
+        <button
+          onClick={logout}
+          className="w-full flex items-center space-x-2 px-4 py-3 bg-red-500 text-white rounded-xl hover:bg-red-600 transition-colors mb-3"
+        >
+          <MdLogout className="text-lg" />
+          <span className="font-medium">Logout</span>
+        </button>
+
         <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-4 border border-red-100" suppressHydrationWarning={true}>
           <h3 className="font-semibold text-red-800 text-sm">Need Help?</h3>
           <p className="text-red-600 text-xs mt-1">Contact support team</p>
