@@ -13,6 +13,7 @@ export default function AdminLayoutContent({ children }) {
       const authData = localStorage.getItem('masterAdminAuth');
       return authData ? JSON.parse(authData).admin : null;
     } catch {
+      
       return null;
     }
   };

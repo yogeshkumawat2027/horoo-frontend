@@ -24,7 +24,7 @@ import {
 export default function ShowFlat() {
   const router = useRouter();
   const params = useParams();
-  const api = "http://localhost:5000/api";
+  const api = "https://horoo-backend.onrender.com/api";
   const flatId = params.id;
 
   const [flat, setFlat] = useState(null);
