@@ -18,7 +18,7 @@ export default function AdminLogin({ onLogin }) {
     setError('');
 
     try {
-      const response = await fetch('https://horoo-backend.onrender.com/api/auth/login', {
+      const response = await fetch('https://horoo-backend-latest.onrender.com/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

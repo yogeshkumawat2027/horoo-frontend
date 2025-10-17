@@ -24,7 +24,7 @@ export default function AddLocation() {
   const [areas, setAreas] = useState([]);
   const [allCities, setAllCities] = useState([]);
 
-  const api = "https://horoo-backend.onrender.com/api";
+  const api = "https://horoo-backend-latest.onrender.com/api";
 
 
 

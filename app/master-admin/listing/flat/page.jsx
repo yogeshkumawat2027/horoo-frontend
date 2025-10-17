@@ -16,7 +16,7 @@ import axios from "axios";
 
 export default function FlatPage() {
   const router = useRouter();
-  const api = "https://horoo-backend.onrender.com/api";
+  const api = "https://horoo-backend-latest.onrender.com/api";
   const [flats, setFlats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showFilters, setShowFilters] = useState(false);

@@ -19,7 +19,7 @@ import Image from 'next/image';
 
 export default function AddCommercial() {
   const router = useRouter();
-  const api = "http://localhost:5000/api";
+  const api = "https://horoo-backend-latest.onrender.com/api";
 
   // UI state
   const [agreementAccepted, setAgreementAccepted] = useState(false);
@@ -386,7 +386,7 @@ export default function AddCommercial() {
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
             <h4 className="text-sm sm:text-base font-semibold text-yellow-800 mb-2">📋 Service Charges:</h4>
             <ul className="space-y-2 text-xs sm:text-sm text-yellow-700">
-              <li className="break-words">• <strong>Monthly Rent ≤ ₹5,000:</strong> No service charge</li>
+              <li className="break-words">• <strong>Monthly Rent ≤ ₹5,000:</strong>  5% service charge (one-time after booking confirmation)</li>
               <li className="break-words">• <strong>Monthly Rent {'>'}₹5,000:</strong> 4% service charge (one-time after booking confirmation)</li>
             </ul>
           </div>

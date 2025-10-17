@@ -24,7 +24,7 @@ import {
 export default function ShowHotelRoom() {
   const router = useRouter();
   const params = useParams();
-  const api = "https://horoo-backend.onrender.com/api";
+  const api = "https://horoo-backend-latest.onrender.com/api";
   const hotelRoomId = params.id;
 
   const [hotelRoom, setHotelRoom] = useState(null);

@@ -15,7 +15,7 @@ import {
 
 export default function ListingPage() {
   const router = useRouter();
-  const api = "https://horoo-backend.onrender.com/api";
+  const api = "https://horoo-backend-latest.onrender.com/api";
   
   // State for all property counts
   const [propertyCounts, setPropertyCounts] = useState({

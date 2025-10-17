@@ -23,7 +23,7 @@ import {
 export default function ShowCommercial() {
   const router = useRouter();
   const params = useParams();
-  const api = "https://horoo-backend.onrender.com/api";
+  const api = "https://horoo-backend-latest.onrender.com/api";
   const [commercial, setCommercial] = useState(null);
   const [loading, setLoading] = useState(true);
 
