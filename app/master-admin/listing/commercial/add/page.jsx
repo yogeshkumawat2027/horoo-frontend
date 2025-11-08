@@ -336,7 +336,7 @@ export default function AddCommercial() {
         quantity: parseInt(formData.quantity)
       };
       
-      const res = await axios.post(`${api}/commercials/commercial`, submitData);
+      const res = await axios.post(`${api}/commercial`, submitData);
       
       if (res.data.success) {
         toast.success("Commercial property added successfully!");

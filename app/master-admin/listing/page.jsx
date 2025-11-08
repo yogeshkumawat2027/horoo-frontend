@@ -138,7 +138,7 @@ export default function ListingPage() {
 
       // Fetch hotel rooms
       try {
-        const hotelResponse = await axios.get(`${api}/hotelroom/hotel`);
+        const hotelResponse = await axios.get(`${api}/hotel`);
         if (hotelResponse.data.success) {
           counts.hotelrooms = hotelResponse.data.HotelRooms?.length || 0;
         }
@@ -148,7 +148,7 @@ export default function ListingPage() {
 
       // Fetch mess
       try {
-        const messResponse = await axios.get(`${api}/mess/mess`);
+        const messResponse = await axios.get(`${api}/mess`);
         if (messResponse.data.success) {
           counts.mess = messResponse.data.mess?.length || 0;
         }

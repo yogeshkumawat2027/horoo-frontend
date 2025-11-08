@@ -50,7 +50,7 @@ export default function MessPage() {
   const fetchMess = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${api}/mess/mess/filter`);
+      const res = await axios.get(`${api}/mess/filter`);
       if (res.data.success) {
         setMessList(res.data.mess || []);
       }
@@ -143,7 +143,7 @@ export default function MessPage() {
         if (value) queryParams.append(key, value);
       });
       
-      const res = await axios.get(`${api}/mess/mess/filter?${queryParams}`);
+      const res = await axios.get(`${api}/mess/filter?${queryParams}`);
       if (res.data.success) {
         setMessList(res.data.mess);
         toast.success("Filters applied successfully");
@@ -213,7 +213,7 @@ export default function MessPage() {
   const deleteMess = async (id) => {
     if (window.confirm('Are you sure you want to delete this mess?')) {
       try {
-        const res = await axios.delete(`${api}/mess/mess-for-admin/${id}`);
+        const res = await axios.delete(`${api}/mess-for-admin/${id}`);
         if (res.data.success) {
           await fetchMess();
           toast.success("Mess deleted successfully");

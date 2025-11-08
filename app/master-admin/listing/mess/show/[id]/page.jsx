@@ -39,7 +39,7 @@ export default function ShowMess() {
   const fetchMessData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${api}/mess/mess-for-admin/${messId}`);
+      const res = await axios.get(`${api}/mess-for-admin/${messId}`);
       
       if (res.data.success) {
         setMess(res.data.mess);

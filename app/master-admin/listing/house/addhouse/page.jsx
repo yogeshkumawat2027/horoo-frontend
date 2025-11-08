@@ -44,7 +44,7 @@ export default function AddHouse() {
     offerType: "",
     
     // House Details (changed from flatType to house-specific)
-    roomType: [],
+    houseType: [],
     houseSize: "", // Changed from roomSize
     availableFor: [],
     quantity: 1,
@@ -559,15 +559,15 @@ export default function AddHouse() {
             {/* Room Type */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Room Type
+                House Type
               </label>
               <div className="space-y-2">
-                {['Single', 'Double', 'Triple'].map((type) => (
+                {['1BHK', '2BHK', '3BHK'].map((type) => (
                   <label key={type} className="flex items-center">
                     <input
                       type="checkbox"
-                      checked={formData.roomType.includes(type)}
-                      onChange={() => handleArrayChange('roomType', type)}
+                      checked={formData.houseType.includes(type)}
+                      onChange={() => handleArrayChange('houseType', type)}
                       className="mr-2 h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
                     />
                     {type}

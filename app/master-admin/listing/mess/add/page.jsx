@@ -260,7 +260,7 @@ export default function AddMess() {
         horooPrice: Number(formData.horooPrice)
       };
 
-      const res = await axios.post(`${api}/mess/mess`, submitData);
+      const res = await axios.post(`${api}/mess`, submitData);
       
       if (res.data.success) {
         toast.success("Mess added successfully!");

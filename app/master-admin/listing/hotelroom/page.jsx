@@ -66,7 +66,7 @@ export default function HotelRoomPage() {
     try {
       setLoading(true);
       // Use filter API to get populated location data
-      const res = await axios.get(`${api}/hotelroom/hotel/filter`);
+      const res = await axios.get(`${api}/hotel/filter`);
       if (res.data.success) setHotelRooms(res.data.hotelRooms);
     } catch (err) {
       toast.error("Failed to fetch hotel rooms");
@@ -167,7 +167,7 @@ export default function HotelRoomPage() {
         if (value) queryParams.append(key, value);
       });
       
-      const res = await axios.get(`${api}/hotelroom/hotel/filter?${queryParams}`);
+      const res = await axios.get(`${api}/hotel/filter?${queryParams}`);
       if (res.data.success) {
         setHotelRooms(res.data.hotelRooms);
         toast.success("Filters applied successfully");

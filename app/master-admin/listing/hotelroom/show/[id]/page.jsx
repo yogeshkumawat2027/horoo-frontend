@@ -39,7 +39,7 @@ export default function ShowHotelRoom() {
   const fetchHotelRoomData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${api}/hotelroom/hotel-for-admin/${hotelRoomId}`);
+      const res = await axios.get(`${api}/hotel-for-admin/${hotelRoomId}`);
       
       if (res.data.success) {
         setHotelRoom(res.data.hotelRoom);

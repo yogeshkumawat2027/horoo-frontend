@@ -103,7 +103,7 @@ export default function EditHotelRoom() {
   const fetchHotelRoomData = async () => {
     try {
       setInitialLoading(true);
-      const res = await axios.get(`${api}/hotelroom/hotel-for-admin/${hotelRoomId}`);
+      const res = await axios.get(`${api}/hotel-for-admin/${hotelRoomId}`);
       
       if (res.data.success) {
         const hotelRoom = res.data.hotelRoom;
@@ -339,7 +339,7 @@ export default function EditHotelRoom() {
         quantity: Number(formData.quantity)
       };
 
-      const res = await axios.put(`${api}/hotelroom/hotel/edit/${hotelRoomId}`, submitData);
+      const res = await axios.put(`${api}/hotel/edit/${hotelRoomId}`, submitData);
       
       if (res.data.success) {
         toast.success("Hotel room updated successfully!");

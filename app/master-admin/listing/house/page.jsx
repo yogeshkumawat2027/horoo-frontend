@@ -24,7 +24,7 @@ export default function HouseManagement() {
     state: '',
     city: '',
     area: '',
-    roomType: '',
+    houseType: '',
     availableFor: '',
     availability: '',
     isVerified: ''
@@ -159,7 +159,7 @@ export default function HouseManagement() {
       state: '',
       city: '',
       area: '',
-      roomType: '',
+      houseType: '',
       availableFor: '',
       availability: '',
       isVerified: ''
@@ -352,18 +352,18 @@ export default function HouseManagement() {
                 </select>
               </div>
 
-              {/* Room Type Filter */}
+              {/* House Type Filter */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Room Type</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">House Type</label>
                 <select
-                  value={filters.roomType}
-                  onChange={(e) => handleFilterChange('roomType', e.target.value)}
+                  value={filters.houseType}
+                  onChange={(e) => handleFilterChange('houseType', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500"
                 >
                   <option value="">All Types</option>
-                  <option value="Single">Single</option>
-                  <option value="Double">Double</option>
-                  <option value="Triple">Triple</option>
+                  <option value="1BHK">1BHK</option>
+                  <option value="2BHK">2BHK</option>
+                  <option value="3BHK">3BHK</option>
                 </select>
               </div>
 
@@ -502,7 +502,7 @@ export default function HouseManagement() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
-                        {house.roomType?.join(', ')}
+                        {house.houseType?.join(', ')}
                       </div>
                       <div className="text-sm text-gray-500">
                         ₹{house.horooPrice} / {house.ownerPrice}

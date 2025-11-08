@@ -100,7 +100,7 @@ export default function EditMess() {
   const fetchMessData = async () => {
     try {
       setInitialLoading(true);
-      const res = await axios.get(`${api}/mess/mess-for-admin/${messId}`);
+      const res = await axios.get(`${api}/mess-for-admin/${messId}`);
       
       if (res.data.success) {
         const mess = res.data.mess;
@@ -321,7 +321,7 @@ export default function EditMess() {
         horooPrice: Number(formData.horooPrice)
       };
 
-      const res = await axios.put(`${api}/mess/mess/edit/${messId}`, submitData);
+      const res = await axios.put(`${api}/mess/edit/${messId}`, submitData);
       
       if (res.data.success) {
         toast.success("Mess updated successfully!");

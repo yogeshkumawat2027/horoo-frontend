@@ -280,7 +280,7 @@ export default function AddHotelRoom() {
         quantity: Number(formData.quantity)
       };
 
-      const res = await axios.post(`${api}/hotelroom/hotel`, submitData);
+      const res = await axios.post(`${api}/hotel`, submitData);
       
       if (res.data.success) {
         toast.success("Hotel room added successfully!");

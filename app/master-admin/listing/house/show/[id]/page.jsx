@@ -278,12 +278,12 @@ export default function ShowHouse() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Room Type */}
-              {house.roomType && house.roomType.length > 0 && (
+              {/* House Type */}
+              {house.houseType && house.houseType.length > 0 && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-500 mb-2">Room Type</label>
+                  <label className="block text-sm font-medium text-gray-500 mb-2">House Type</label>
                   <div className="flex flex-wrap gap-2">
-                    {house.roomType.map((type, index) => (
+                    {house.houseType.map((type, index) => (
                       <span
                         key={index}
                         className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm"
