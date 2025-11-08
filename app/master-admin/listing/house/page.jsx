@@ -57,7 +57,7 @@ export default function HouseManagement() {
     try {
       setLoading(true);
       // Use filter API to get populated location data like flat page
-      const response = await axios.get(`${api}/houses/house/filter`);
+      const response = await axios.get(`${api}/house/filter`);
       if (response.data.success) {
         setHouses(response.data.houses || []);
       }
@@ -141,7 +141,7 @@ export default function HouseManagement() {
         }
       });
       
-      const response = await axios.get(`${api}/houses/house/filter?${params}`);
+      const response = await axios.get(`${api}/house/filter?${params}`);
       if (response.data.success) {
         setHouses(response.data.houses || []);
       }

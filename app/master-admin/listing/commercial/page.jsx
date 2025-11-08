@@ -51,7 +51,7 @@ export default function CommercialPage() {
   const fetchCommercials = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${api}/commercials/commercial/filter`);
+      const res = await axios.get(`${api}/commercial/filter`);
       if (res.data.success) {
         setCommercials(res.data.commercials || []);
       }
@@ -144,7 +144,7 @@ export default function CommercialPage() {
         if (value) queryParams.append(key, value);
       });
       
-      const res = await axios.get(`${api}/commercials/commercial/filter?${queryParams}`);
+      const res = await axios.get(`${api}/commercial/filter?${queryParams}`);
       if (res.data.success) {
         setCommercials(res.data.commercials);
         toast.success("Filters applied successfully");
@@ -215,7 +215,7 @@ export default function CommercialPage() {
   const deleteCommercial = async (id) => {
     if (window.confirm('Are you sure you want to delete this commercial property?')) {
       try {
-        const res = await axios.delete(`${api}/commercials/commercial-for-admin/${id}`);
+        const res = await axios.delete(`${api}/commercial-for-admin/${id}`);
         if (res.data.success) {
           await fetchCommercials();
           toast.success("Commercial property deleted successfully");

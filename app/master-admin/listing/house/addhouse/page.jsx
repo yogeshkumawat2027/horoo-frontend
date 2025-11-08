@@ -282,7 +282,7 @@ export default function AddHouse() {
         quantity: Number(formData.quantity)
       };
 
-      const res = await axios.post(`${api}/houses/house`, submitData);
+      const res = await axios.post(`${api}/house`, submitData);
       
       if (res.data.success) {
         toast.success("House added successfully!");

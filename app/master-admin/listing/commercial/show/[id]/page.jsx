@@ -36,7 +36,7 @@ export default function ShowCommercial() {
   const fetchCommercial = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${api}/commercials/commercial-for-admin/${params.id}`);
+      const res = await axios.get(`${api}/commercial-for-admin/${params.id}`);
       if (res.data.success) {
         setCommercial(res.data.commercial);
       } else {
@@ -55,7 +55,7 @@ export default function ShowCommercial() {
   const deleteCommercial = async () => {
     if (window.confirm('Are you sure you want to delete this commercial property? This action cannot be undone.')) {
       try {
-        const res = await axios.delete(`${api}/commercials/commercial-for-admin/${params.id}`);
+        const res = await axios.delete(`${api}/commercial-for-admin/${params.id}`);
         if (res.data.success) {
           toast.success("Commercial property deleted successfully");
           router.push('/master-admin/listing/commercial');

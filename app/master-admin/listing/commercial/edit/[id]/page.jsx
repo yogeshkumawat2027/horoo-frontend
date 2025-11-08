@@ -103,7 +103,7 @@ export default function EditCommercial() {
   const fetchCommercial = async () => {
     try {
       setInitialLoading(true);
-      const res = await axios.get(`${api}/commercials/commercial-for-admin/${params.id}`);
+      const res = await axios.get(`${api}/commercial-for-admin/${params.id}`);
       if (res.data.success) {
         const commercial = res.data.commercial;
         setFormData({
@@ -390,7 +390,7 @@ export default function EditCommercial() {
         quantity: parseInt(formData.quantity)
       };
       
-      const res = await axios.put(`${api}/commercials/commercial/edit/${params.id}`, submitData);
+      const res = await axios.put(`${api}/commercial/edit/${params.id}`, submitData);
       
       if (res.data.success) {
         toast.success("Commercial property updated successfully!");

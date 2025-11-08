@@ -39,7 +39,7 @@ export default function ShowHouse() {
   const fetchHouseData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${api}/houses/house-for-admin/${houseId}`);
+      const res = await axios.get(`${api}/house-for-admin/${houseId}`);
       
       if (res.data.success) {
         setHouse(res.data.house);

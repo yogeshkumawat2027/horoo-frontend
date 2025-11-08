@@ -103,7 +103,7 @@ export default function EditHouse() {
   const fetchHouseData = async () => {
     try {
       setInitialLoading(true);
-      const res = await axios.get(`${api}/houses/house-for-admin/${houseId}`);
+      const res = await axios.get(`${api}/house-for-admin/${houseId}`);
       
       if (res.data.success) {
         const house = res.data.house;
@@ -339,7 +339,7 @@ export default function EditHouse() {
         quantity: Number(formData.quantity)
       };
 
-      const res = await axios.put(`${api}/houses/house/edit/${houseId}`, submitData);
+      const res = await axios.put(`${api}/house/edit/${houseId}`, submitData);
       
       if (res.data.success) {
         toast.success("House updated successfully!");
