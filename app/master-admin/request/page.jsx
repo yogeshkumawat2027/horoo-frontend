@@ -1,17 +1,37 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import { FaFilter, FaSearch, FaSync, FaPhone, FaMapMarkerAlt, FaClock, FaUser } from "react-icons/fa";
+import { FaFilter, FaSearch, FaSync, FaPhone, FaIdCard, FaClock, FaUser, FaEye } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export default function RequestsPage() {
-  const api = "http://localhost:5000/api";
+  const api = "https://horoo-backend-latest.onrender.com/api";
+  const router = useRouter();
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
-  const hasFetched = useRef(false); // Prevent duplicate fetches
+  const hasFetched = useRef(false);
 
   // Filters
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
+
+  // Detect Property Type From Horoo ID
+  const getPropertyType = (horooId) => {
+    if (!horooId) return "unknown";
+    const prefix = horooId.substring(0, 3).toUpperCase();
+
+    const map = {
+      HRM: "room",
+      HHL: "hostel",
+      HFT: "flat",
+      HMS: "mess",
+      HHE: "house",
+      HCL: "commercial",
+      HHR: "hotelroom",
+    };
+
+    return map[prefix] || "unknown";
+  };
 
   // Fetch All Requests
   const fetchRequests = async () => {
@@ -24,7 +44,6 @@ export default function RequestsPage() {
       console.log("API RESPONSE:", data);
 
       if (data.success && Array.isArray(data.data)) {
-        // Remove duplicates using _id
         const uniqueRequests = Array.from(
           new Map(data.data.map(item => [item._id, item])).values()
         );
@@ -71,15 +90,24 @@ export default function RequestsPage() {
     }
   };
 
+  // Navigate to Property Details
+  const handleViewDetails = (horooId) => {
+    const propertyType = getPropertyType(horooId);
+    if (propertyType === "unknown") {
+      toast.error("Invalid property ID");
+      return;
+    }
+    router.push(`/master-admin/listing/${propertyType}/show/${horooId}`);
+  };
+
   useEffect(() => {
-    // Prevent duplicate calls in strict mode
     if (!hasFetched.current) {
       hasFetched.current = true;
       fetchRequests();
     }
   }, []);
 
-  // Filter + Search Logic
+  // Filter + Search logic
   const filteredRequests = requests.filter((req) => {
     const matchesSearch =
       req.userName?.toLowerCase().includes(search.toLowerCase()) ||
@@ -197,7 +225,8 @@ export default function RequestsPage() {
               className="bg-white p-5 rounded-lg shadow-sm border border-gray-200 hover:shadow-md hover:border-orange-300 transition-all"
             >
               <div className="flex flex-col md:flex-row md:items-center gap-4">
-                {/* User Info Section */}
+
+                {/* User Info */}
                 <div className="flex items-center gap-3 md:w-64">
                   <div className="bg-orange-100 p-3 rounded-lg flex-shrink-0">
                     <FaUser className="text-orange-600 text-lg" />
@@ -210,19 +239,19 @@ export default function RequestsPage() {
                   </div>
                 </div>
 
-                {/* Contact Info Section */}
+                {/* Contact Info */}
                 <div className="flex flex-col sm:flex-row gap-3 md:flex-1">
                   <div className="flex items-center gap-2 text-gray-700">
                     <FaPhone className="text-orange-600 flex-shrink-0" />
                     <span className="text-sm font-medium">{req.userPhoneNo}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-700">
-                    <FaMapMarkerAlt className="text-orange-600 flex-shrink-0" />
+                    <FaIdCard className="text-orange-600 flex-shrink-0" />
                     <span className="text-sm font-medium">ID: {req.horooId}</span>
                   </div>
                 </div>
 
-                {/* Status Dropdown */}
+                {/* Status */}
                 <div className="md:w-48">
                   <select
                     value={req.status}
@@ -240,14 +269,28 @@ export default function RequestsPage() {
                 {/* Timestamp */}
                 <div className="flex items-center gap-2 text-xs text-gray-500 md:w-40">
                   <FaClock className="flex-shrink-0" />
-                  <span className="whitespace-nowrap">{new Date(req.createdAt).toLocaleString('en-IN', {
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                  })}</span>
+                  <span className="whitespace-nowrap">
+                    {new Date(req.createdAt).toLocaleString("en-IN", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </span>
                 </div>
+
+                {/* View Details Button */}
+                <div className="md:w-40 flex justify-end">
+                  <button
+                    onClick={() => handleViewDetails(req.horooId)}
+                    className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium shadow-sm hover:shadow transition-all"
+                  >
+                    <FaEye />
+                    <span>View Details</span>
+                  </button>
+                </div>
+
               </div>
             </div>
           ))}
