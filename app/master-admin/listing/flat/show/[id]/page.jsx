@@ -25,21 +25,21 @@ export default function ShowFlat() {
   const router = useRouter();
   const params = useParams();
   const api = "https://horoo-backend-latest.onrender.com/api";
-  const flatId = params.id;
+  const horooId = params.id; // This will now be horooId like HFT0001
 
   const [flat, setFlat] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (flatId) {
+    if (horooId) {
       fetchFlatData();
     }
-  }, [flatId]);
+  }, [horooId]);
 
   const fetchFlatData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${api}/flat-for-admin/${flatId}`);
+      const res = await axios.get(`${api}/flat-for-admin/horoo/${horooId}`);
       
       if (res.data.success) {
         setFlat(res.data.flat);

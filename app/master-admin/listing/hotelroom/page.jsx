@@ -564,7 +564,7 @@ export default function HotelRoomPage() {
                     <td className="px-6 py-4 text-right text-sm font-medium">
                       <div className="flex items-center justify-end gap-2">
                         <button
-                          onClick={() => router.push(`/master-admin/listing/hotelroom/show/${hotelRoom._id}`)}
+                          onClick={() => router.push(`/master-admin/listing/hotelroom/show/${hotelRoom.horooId}`)}
                           className="text-orange-600 hover:text-orange-900 p-2 rounded-lg hover:bg-orange-50 transition-colors"
                           title="View Details"
                         >

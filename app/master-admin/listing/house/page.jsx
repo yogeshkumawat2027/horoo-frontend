@@ -525,7 +525,7 @@ export default function HouseManagement() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => router.push(`/master-admin/listing/house/show/${house._id}`)}
+                          onClick={() => router.push(`/master-admin/listing/house/show/${house.horooId}`)}
                           className="text-orange-600 hover:text-orange-900 p-1"
                           title="View Details"
                         >

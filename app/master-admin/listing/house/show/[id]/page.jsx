@@ -25,21 +25,21 @@ export default function ShowHouse() {
   const router = useRouter();
   const params = useParams();
   const api = "https://horoo-backend-latest.onrender.com/api";
-  const houseId = params.id;
+  const horooId = params.id; // This will now be horooId like HHE0001
 
   const [house, setHouse] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (houseId) {
+    if (horooId) {
       fetchHouseData();
     }
-  }, [houseId]);
+  }, [horooId]);
 
   const fetchHouseData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${api}/house-for-admin/${houseId}`);
+      const res = await axios.get(`${api}/house-for-admin/horoo/${horooId}`);
       
       if (res.data.success) {
         setHouse(res.data.house);

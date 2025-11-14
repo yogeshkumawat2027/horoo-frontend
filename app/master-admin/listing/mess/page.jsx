@@ -546,7 +546,7 @@ export default function MessPage() {
                     <td className="px-6 py-4 text-sm">
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => router.push(`/master-admin/listing/mess/show/${mess._id}`)}
+                          onClick={() => router.push(`/master-admin/listing/mess/show/${mess.horooId}`)}
                           className="text-blue-600 hover:text-blue-800 p-1 hover:bg-blue-100 rounded transition-colors"
                           title="View Details"
                         >

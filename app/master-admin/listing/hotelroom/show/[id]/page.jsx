@@ -25,21 +25,21 @@ export default function ShowHotelRoom() {
   const router = useRouter();
   const params = useParams();
   const api = "https://horoo-backend-latest.onrender.com/api";
-  const hotelRoomId = params.id;
+  const horooId = params.id; // This will now be horooId like HHR0001
 
   const [hotelRoom, setHotelRoom] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (hotelRoomId) {
+    if (horooId) {
       fetchHotelRoomData();
     }
-  }, [hotelRoomId]);
+  }, [horooId]);
 
   const fetchHotelRoomData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${api}/hotel-for-admin/${hotelRoomId}`);
+      const res = await axios.get(`${api}/hotel-for-admin/horoo/${horooId}`);
       
       if (res.data.success) {
         setHotelRoom(res.data.hotelRoom);

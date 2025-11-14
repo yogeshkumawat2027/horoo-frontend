@@ -13,6 +13,7 @@ import {
   MdPerson,
   MdLogout
 } from "react-icons/md";
+import { CiSquareQuestion } from "react-icons/ci";
 
 export default function Sidebar({ logout, adminData }) {
   const router = useRouter();
@@ -23,6 +24,7 @@ export default function Sidebar({ logout, adminData }) {
     { name: "City", path: "/master-admin/city", icon: MdLocationCity },
     { name: "Listing", path: "/master-admin/listing", icon: MdBusiness },
     { name: "Booking", path: "/master-admin/booking", icon: MdBookmark },
+    { name: "Requests", path: "/master-admin/requests", icon: CiSquareQuestion },
     { name: "Users", path: "/master-admin/user", icon: MdPeople },
     { name: "Agent", path: "/master-admin/agent", icon: MdSupportAgent },
     { name: "Master Admin", path: "/master-admin/admin", icon: MdPerson }

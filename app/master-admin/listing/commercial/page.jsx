@@ -571,7 +571,7 @@ export default function CommercialPage() {
                     <td className="px-6 py-4 text-sm">
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => router.push(`/master-admin/listing/commercial/show/${commercial._id}`)}
+                          onClick={() => router.push(`/master-admin/listing/commercial/show/${commercial.horooId}`)}
                           className="text-orange-600 hover:text-orange-800 p-1 hover:bg-orange-100 rounded transition-colors"
                           title="View Details"
                         >

@@ -25,11 +25,11 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-        <AuthWrapper>
+        {/* <AuthWrapper> */}
           <AdminLayoutContent>
             {children}
           </AdminLayoutContent>
-        </AuthWrapper>
+        {/* </AuthWrapper> */}
       </body>
     </html>
   );

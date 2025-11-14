@@ -25,21 +25,21 @@ export default function ShowMess() {
   const router = useRouter();
   const params = useParams();
   const api = "https://horoo-backend-latest.onrender.com/api";
-  const messId = params.id;
+  const horooId = params.id; // This will now be horooId like HMS0001
 
   const [mess, setMess] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (messId) {
+    if (horooId) {
       fetchMessData();
     }
-  }, [messId]);
+  }, [horooId]);
 
   const fetchMessData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${api}/mess-for-admin/${messId}`);
+      const res = await axios.get(`${api}/mess-for-admin/horoo/${horooId}`);
       
       if (res.data.success) {
         setMess(res.data.mess);

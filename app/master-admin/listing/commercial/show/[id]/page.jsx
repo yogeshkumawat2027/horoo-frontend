@@ -26,17 +26,18 @@ export default function ShowCommercial() {
   const api = "https://horoo-backend-latest.onrender.com/api";
   const [commercial, setCommercial] = useState(null);
   const [loading, setLoading] = useState(true);
+  const horooId = params.id; // This will now be horooId like HCL0001
 
   useEffect(() => {
-    if (params.id) {
+    if (horooId) {
       fetchCommercial();
     }
-  }, [params.id]);
+  }, [horooId]);
 
   const fetchCommercial = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${api}/commercial-for-admin/${params.id}`);
+      const res = await axios.get(`${api}/commercial-for-admin/horoo/${horooId}`);
       if (res.data.success) {
         setCommercial(res.data.commercial);
       } else {
@@ -55,7 +56,7 @@ export default function ShowCommercial() {
   const deleteCommercial = async () => {
     if (window.confirm('Are you sure you want to delete this commercial property? This action cannot be undone.')) {
       try {
-        const res = await axios.delete(`${api}/commercial-for-admin/${params.id}`);
+        const res = await axios.delete(`${api}/commercial-for-admin/${horooId}`);
         if (res.data.success) {
           toast.success("Commercial property deleted successfully");
           router.push('/master-admin/listing/commercial');

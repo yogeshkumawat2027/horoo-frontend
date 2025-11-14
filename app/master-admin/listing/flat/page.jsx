@@ -544,7 +544,7 @@ export default function FlatPage() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => router.push(`/master-admin/listing/flat/show/${flat._id}`)}
+                          onClick={() => router.push(`/master-admin/listing/flat/show/${flat.horooId}`)}
                           className="text-blue-600 hover:text-blue-900 p-1"
                           title="View Details"
                         >

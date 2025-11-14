@@ -527,7 +527,7 @@ export default function HostelPage() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => router.push(`/master-admin/listing/hostel/show/${hostel._id}`)}
+                          onClick={() => router.push(`/master-admin/listing/hostel/show/${hostel.horooId}`)}
                           className="text-orange-600 hover:text-orange-900 p-1"
                           title="View Details"
                         >
