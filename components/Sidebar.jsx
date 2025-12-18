@@ -14,6 +14,7 @@ import {
   MdLogout
 } from "react-icons/md";
 import { CiSquareQuestion } from "react-icons/ci";
+import { FaClipboardList } from "react-icons/fa";
 
 export default function Sidebar({ logout, adminData }) {
   const router = useRouter();
@@ -25,15 +26,16 @@ export default function Sidebar({ logout, adminData }) {
     { name: "Listing", path: "/master-admin/listing", icon: MdBusiness },
     { name: "Booking", path: "/master-admin/booking", icon: MdBookmark },
     { name: "Requests", path: "/master-admin/requests", icon: CiSquareQuestion },
+    { name: "Listing Requests", path: "/master-admin/listingrequest", icon: FaClipboardList },
     { name: "Users", path: "/master-admin/user", icon: MdPeople },
     { name: "Agent", path: "/master-admin/agent", icon: MdSupportAgent },
     { name: "Master Admin", path: "/master-admin/admin", icon: MdPerson }
   ];
 
   return (
-    <div className="w-72 bg-white shadow-xl h-full fixed border-r border-gray-200" suppressHydrationWarning={true}>
+    <div className="w-72 bg-white shadow-xl h-screen fixed border-r border-gray-200 flex flex-col" suppressHydrationWarning={true}>
       {/* Logo Section */}
-      <div className="p-6 border-b border-gray-100" suppressHydrationWarning={true}>
+      <div className="p-6 border-b border-gray-100 flex-shrink-0" suppressHydrationWarning={true}>
         <div className="flex items-center space-x-3" suppressHydrationWarning={true}>
           <div className="w-10 h-10 rounded-lg overflow-hidden border-2 border-red-500 shadow-lg" suppressHydrationWarning={true}>
             <Image 
@@ -54,7 +56,7 @@ export default function Sidebar({ logout, adminData }) {
       </div>
 
       {/* Navigation */}
-      <nav className="mt-6 px-4">
+      <nav className="flex-1 overflow-y-auto mt-6 px-4 pb-4">
         <ul className="space-y-2">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -88,7 +90,7 @@ export default function Sidebar({ logout, adminData }) {
       </nav>
 
       {/* Bottom Section */}
-      <div className="absolute bottom-4 left-4 right-4" suppressHydrationWarning={true}>
+      <div className="flex-shrink-0 p-4 border-t border-gray-100" suppressHydrationWarning={true}>
         {/* Admin Info */}
         {adminData && (
           <div className="bg-orange-50 rounded-xl p-3 border border-orange-200 mb-3" suppressHydrationWarning={true}>
