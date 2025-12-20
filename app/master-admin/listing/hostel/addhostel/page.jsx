@@ -18,7 +18,7 @@ import QuillEditor from '../../../../../components/QuillEditor';
 
 export default function AddHostel() {
   const router = useRouter();
-  const api = "https://horoo-backend-latest.onrender.com/api";
+  const api = "http://localhost:5000/api";
 
   // Form state
   const [formData, setFormData] = useState({
@@ -27,6 +27,7 @@ export default function AddHostel() {
     horooName: "",
     ownerName: "",
     ownerMobile: "",
+    ownerWhatsapp: "",
     anotherNo: "",
     
     // Location
@@ -37,10 +38,13 @@ export default function AddHostel() {
     mapLink: "",
     realAddress: "",
     horooAddress: "",
+    latitude: "",
+    longitude: "",
     
     // Pricing
     ownerPrice: "",
     horooPrice: "",
+    priceSuffix: "per month",
     offerType: "",
     
     // Hostel Details (same as flat structure)
@@ -387,6 +391,20 @@ export default function AddHostel() {
               />
             </div>
             
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                WhatsApp Number
+              </label>
+              <input
+                type="tel"
+                value={formData.ownerWhatsapp}
+                onChange={(e) => handleInputChange('ownerWhatsapp', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                placeholder="WhatsApp number (optional)"
+                maxLength="10"
+              />
+            </div>
+            
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Another Number (Optional)
@@ -484,6 +502,34 @@ export default function AddHostel() {
                 onChange={(e) => handleInputChange('mapLink', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 placeholder="Enter Google Maps link"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Latitude
+              </label>
+              <input
+                type="number"
+                step="any"
+                value={formData.latitude}
+                onChange={(e) => handleInputChange('latitude', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                placeholder="e.g., 28.7041"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Longitude
+              </label>
+              <input
+                type="number"
+                step="any"
+                value={formData.longitude}
+                onChange={(e) => handleInputChange('longitude', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                placeholder="e.g., 77.1025"
               />
             </div>
             
@@ -657,6 +703,22 @@ export default function AddHostel() {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 placeholder="Enter horoo price"
               />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Price Suffix *
+              </label>
+              <select
+                value={formData.priceSuffix}
+                onChange={(e) => handleInputChange('priceSuffix', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              >
+                <option value="per month">Per Month</option>
+                <option value="per day">Per Day</option>
+                <option value="per night">Per Night</option>
+                <option value="per hour">Per Hour</option>
+              </select>
             </div>
             
             <div>

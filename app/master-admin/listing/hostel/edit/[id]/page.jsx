@@ -30,6 +30,7 @@ export default function EditHostel() {
     horooName: "",
     ownerName: "",
     ownerMobile: "",
+    ownerWhatsapp: "",
     anotherNo: "",
     
     // Location
@@ -40,10 +41,13 @@ export default function EditHostel() {
     mapLink: "",
     realAddress: "",
     horooAddress: "",
+    latitude: "",
+    longitude: "",
     
     // Pricing
     ownerPrice: "",
     horooPrice: "",
+    priceSuffix: "per month",
     offerType: "",
     
     // Hostel Details
@@ -114,6 +118,7 @@ export default function EditHostel() {
           horooName: hostel.horooName || "",
           ownerName: hostel.ownerName || "",
           ownerMobile: hostel.ownerMobile || "",
+          ownerWhatsapp: hostel.ownerWhatsapp || "",
           anotherNo: hostel.anotherNo || "",
           
           state: hostel.state || "",
@@ -123,9 +128,12 @@ export default function EditHostel() {
           mapLink: hostel.mapLink || "",
           realAddress: hostel.realAddress || "",
           horooAddress: hostel.horooAddress || "",
+          latitude: hostel.latitude || "",
+          longitude: hostel.longitude || "",
           
           ownerPrice: hostel.ownerPrice || "",
           horooPrice: hostel.horooPrice || "",
+          priceSuffix: hostel.priceSuffix || "per month",
           offerType: hostel.offerType || "",
           
           roomSize: hostel.roomSize || "",

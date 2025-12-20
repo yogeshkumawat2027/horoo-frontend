@@ -182,6 +182,16 @@ export default function ShowFlat() {
                 </p>
               </div>
               
+              {flat.ownerWhatsapp && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-500 mb-1">WhatsApp Number</label>
+                  <p className="text-gray-900 flex items-center gap-2">
+                    <FaPhone className="text-green-600" />
+                    {flat.ownerWhatsapp}
+                  </p>
+                </div>
+              )}
+              
               {flat.anotherNo && (
                 <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-500 mb-1">Alternative Number</label>
@@ -248,6 +258,15 @@ export default function ShowFlat() {
                     <FaExternalLinkAlt />
                     View on Map
                   </a>
+                </div>
+              )}
+              
+              {(flat.latitude || flat.longitude) && (
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-500 mb-1">Coordinates</label>
+                  <p className="text-gray-900">
+                    Latitude: {flat.latitude || 'N/A'}, Longitude: {flat.longitude || 'N/A'}
+                  </p>
                 </div>
               )}
             </div>
@@ -347,6 +366,9 @@ export default function ShowFlat() {
               <div className="bg-blue-50 p-4 rounded-lg">
                 <label className="block text-sm font-medium text-blue-600 mb-1">Horoo Price</label>
                 <p className="text-2xl font-bold text-blue-700">₹{flat.horooPrice}</p>
+                {flat.priceSuffix && (
+                  <p className="text-sm text-blue-600 mt-1 capitalize">{flat.priceSuffix}</p>
+                )}
               </div>
               
               {flat.offerType && (

@@ -18,7 +18,7 @@ import QuillEditor from '../../../../../components/QuillEditor';
 
 export default function AddMess() {
   const router = useRouter();
-  const api = "https://horoo-backend-latest.onrender.com/api";
+  const api = "http://localhost:5000/api";
 
   // Form state
   const [formData, setFormData] = useState({

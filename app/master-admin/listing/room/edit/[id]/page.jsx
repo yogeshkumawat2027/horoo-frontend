@@ -30,6 +30,7 @@ export default function EditRoom() {
     horooName: "",
     ownerName: "",
     ownerMobile: "",
+    ownerWhatsapp: "",
     anotherNo: "",
     
     // Location
@@ -40,10 +41,13 @@ export default function EditRoom() {
     mapLink: "",
     realAddress: "",
     horooAddress: "",
+    latitude: "",
+    longitude: "",
     
     // Pricing
     ownerPrice: "",
     horooPrice: "",
+    priceSuffix: "per month",
     offerType: "",
     
     // Room Details
@@ -103,6 +107,7 @@ export default function EditRoom() {
           horooName: room.horooName || "",
           ownerName: room.ownerName || "",
           ownerMobile: room.ownerMobile || "",
+          ownerWhatsapp: room.ownerWhatsapp || "",
           anotherNo: room.anotherNo || "",
           state: room.state?._id || "",
           city: room.city?._id || "",
@@ -111,8 +116,11 @@ export default function EditRoom() {
           mapLink: room.mapLink || "",
           realAddress: room.realAddress || "",
           horooAddress: room.horooAddress || "",
+          latitude: room.latitude || "",
+          longitude: room.longitude || "",
           ownerPrice: room.ownerPrice || "",
           horooPrice: room.horooPrice || "",
+          priceSuffix: room.priceSuffix || "per month",
           offerType: room.offerType || "",
           roomType: room.roomType || [],
           roomSize: room.roomSize || "",
@@ -437,6 +445,20 @@ export default function EditRoom() {
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
+                Owner WhatsApp
+              </label>
+              <input
+                type="tel"
+                value={formData.ownerWhatsapp}
+                onChange={(e) => handleInputChange('ownerWhatsapp', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                placeholder="WhatsApp number (optional)"
+                maxLength={10}
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 Alternative Number
               </label>
               <input
@@ -531,6 +553,34 @@ export default function EditRoom() {
                 onChange={(e) => handleInputChange('mapLink', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 placeholder="Google Maps link"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Latitude
+              </label>
+              <input
+                type="number"
+                step="any"
+                value={formData.latitude}
+                onChange={(e) => handleInputChange('latitude', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                placeholder="e.g., 28.7041"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Longitude
+              </label>
+              <input
+                type="number"
+                step="any"
+                value={formData.longitude}
+                onChange={(e) => handleInputChange('longitude', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                placeholder="e.g., 77.1025"
               />
             </div>
           </div>
@@ -701,6 +751,22 @@ export default function EditRoom() {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 placeholder="Price shown to users"
               />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Price Suffix *
+              </label>
+              <select
+                value={formData.priceSuffix}
+                onChange={(e) => handleInputChange('priceSuffix', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              >
+                <option value="per month">Per Month</option>
+                <option value="per day">Per Day</option>
+                <option value="per night">Per Night</option>
+                <option value="per hour">Per Hour</option>
+              </select>
             </div>
             
             <div>

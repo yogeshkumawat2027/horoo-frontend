@@ -210,6 +210,15 @@ export default function ShowCommercial() {
                     <p className="text-lg font-medium text-gray-900">{commercial.ownerMobile}</p>
                   </div>
                 </div>
+                {commercial.ownerWhatsapp && (
+                  <div>
+                    <label className="text-sm font-medium text-gray-600">WhatsApp Number</label>
+                    <div className="flex items-center gap-2">
+                      <FaPhone className="text-green-600" />
+                      <p className="text-lg font-medium text-gray-900">{commercial.ownerWhatsapp}</p>
+                    </div>
+                  </div>
+                )}
                 {commercial.anotherNo && (
                   <div className="md:col-span-2">
                     <label className="text-sm font-medium text-gray-600">Another Mobile</label>
@@ -330,6 +339,15 @@ export default function ShowCommercial() {
                     </a>
                   </div>
                 )}
+
+                {(commercial.latitude || commercial.longitude) && (
+                  <div>
+                    <label className="text-sm font-medium text-gray-600">Coordinates</label>
+                    <p className="text-gray-900">
+                      Latitude: {commercial.latitude || 'N/A'}, Longitude: {commercial.longitude || 'N/A'}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -393,6 +411,9 @@ export default function ShowCommercial() {
                 <div>
                   <label className="text-sm font-medium text-gray-600">Horoo Price</label>
                   <p className="text-2xl font-bold text-orange-600">₹{commercial.horooPrice?.toLocaleString()}</p>
+                  {commercial.priceSuffix && (
+                    <p className="text-sm text-orange-600 mt-1 capitalize">{commercial.priceSuffix}</p>
+                  )}
                 </div>
                 {commercial.offerType && (
                   <div>

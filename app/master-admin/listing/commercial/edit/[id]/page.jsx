@@ -28,6 +28,7 @@ export default function EditCommercial() {
     horooName: "",
     ownerName: "",
     ownerMobile: "",
+    ownerWhatsapp: "",
     anotherNo: "",
     
     // Location
@@ -38,10 +39,13 @@ export default function EditCommercial() {
     mapLink: "",
     realAddress: "",
     horooAddress: "",
+    latitude: "",
+    longitude: "",
     
     // Pricing
     ownerPrice: "",
     horooPrice: "",
+    priceSuffix: "per month",
     offerType: "",
     
     // Commercial Details
@@ -111,6 +115,7 @@ export default function EditCommercial() {
           horooName: commercial.horooName || "",
           ownerName: commercial.ownerName || "",
           ownerMobile: commercial.ownerMobile || "",
+          ownerWhatsapp: commercial.ownerWhatsapp || "",
           anotherNo: commercial.anotherNo || "",
           state: commercial.state?._id || "",
           city: commercial.city?._id || "",
@@ -119,8 +124,11 @@ export default function EditCommercial() {
           mapLink: commercial.mapLink || "",
           realAddress: commercial.realAddress || "",
           horooAddress: commercial.horooAddress || "",
+          latitude: commercial.latitude || "",
+          longitude: commercial.longitude || "",
           ownerPrice: commercial.ownerPrice || "",
           horooPrice: commercial.horooPrice || "",
+          priceSuffix: commercial.priceSuffix || "per month",
           offerType: commercial.offerType || "",
           commercialType: commercial.commercialType || [],
           commercialSize: commercial.commercialSize || "",
@@ -504,6 +512,20 @@ export default function EditCommercial() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
+                WhatsApp Number
+              </label>
+              <input
+                type="tel"
+                value={formData.ownerWhatsapp}
+                onChange={(e) => handleInputChange('ownerWhatsapp', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                placeholder="WhatsApp number (optional)"
+                maxLength="10"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 Another Mobile Number
               </label>
               <input
@@ -605,6 +627,34 @@ export default function EditCommercial() {
                 onChange={(e) => handleInputChange('mapLink', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 placeholder="Google Maps link"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Latitude
+              </label>
+              <input
+                type="number"
+                step="any"
+                value={formData.latitude}
+                onChange={(e) => handleInputChange('latitude', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                placeholder="e.g., 28.7041"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Longitude
+              </label>
+              <input
+                type="number"
+                step="any"
+                value={formData.longitude}
+                onChange={(e) => handleInputChange('longitude', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                placeholder="e.g., 77.1025"
               />
             </div>
 
@@ -876,6 +926,22 @@ export default function EditCommercial() {
                 placeholder="Enter Horoo price"
                 required
               />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Price Suffix *
+              </label>
+              <select
+                value={formData.priceSuffix}
+                onChange={(e) => handleInputChange('priceSuffix', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              >
+                <option value="per month">Per Month</option>
+                <option value="per day">Per Day</option>
+                <option value="per night">Per Night</option>
+                <option value="per hour">Per Hour</option>
+              </select>
             </div>
 
             <div>

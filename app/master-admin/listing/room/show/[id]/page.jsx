@@ -182,6 +182,16 @@ export default function ShowRoom() {
                 </p>
               </div>
               
+              {room.ownerWhatsapp && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-500 mb-1">WhatsApp Number</label>
+                  <p className="text-gray-900 flex items-center gap-2">
+                    <FaPhone className="text-green-600" />
+                    {room.ownerWhatsapp}
+                  </p>
+                </div>
+              )}
+              
               {room.anotherNo && (
                 <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-500 mb-1">Alternative Number</label>
@@ -248,6 +258,15 @@ export default function ShowRoom() {
                     <FaExternalLinkAlt />
                     View on Map
                   </a>
+                </div>
+              )}
+              
+              {(room.latitude || room.longitude) && (
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-500 mb-1">Coordinates</label>
+                  <p className="text-gray-900">
+                    Latitude: {room.latitude || 'N/A'}, Longitude: {room.longitude || 'N/A'}
+                  </p>
                 </div>
               )}
             </div>
@@ -330,6 +349,9 @@ export default function ShowRoom() {
               <div className="bg-orange-50 p-4 rounded-lg">
                 <label className="block text-sm font-medium text-orange-600 mb-1">Horoo Price</label>
                 <p className="text-2xl font-bold text-orange-700">₹{room.horooPrice}</p>
+                {room.priceSuffix && (
+                  <p className="text-sm text-orange-600 mt-1 capitalize">{room.priceSuffix}</p>
+                )}
               </div>
               
               {room.offerType && (

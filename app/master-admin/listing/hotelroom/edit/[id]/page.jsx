@@ -30,6 +30,7 @@ export default function EditHotelRoom() {
     horooName: "",
     ownerName: "",
     ownerMobile: "",
+    ownerWhatsapp: "",
     anotherNo: "",
     
     // Location
@@ -40,10 +41,13 @@ export default function EditHotelRoom() {
     mapLink: "",
     realAddress: "",
     horooAddress: "",
+    latitude: "",
+    longitude: "",
     
     // Pricing
     ownerPrice: "",
     horooPrice: "",
+    priceSuffix: "per month",
     offerType: "",
     
     // Hotel Room Details
@@ -113,6 +117,7 @@ export default function EditHotelRoom() {
           horooName: hotelRoom.horooName || "",
           ownerName: hotelRoom.ownerName || "",
           ownerMobile: hotelRoom.ownerMobile || "",
+          ownerWhatsapp: hotelRoom.ownerWhatsapp || "",
           anotherNo: hotelRoom.anotherNo || "",
           
           state: hotelRoom.state || "",
@@ -122,9 +127,12 @@ export default function EditHotelRoom() {
           mapLink: hotelRoom.mapLink || "",
           realAddress: hotelRoom.realAddress || "",
           horooAddress: hotelRoom.horooAddress || "",
+          latitude: hotelRoom.latitude || "",
+          longitude: hotelRoom.longitude || "",
           
           ownerPrice: hotelRoom.ownerPrice || "",
           horooPrice: hotelRoom.horooPrice || "",
+          priceSuffix: hotelRoom.priceSuffix || "per month",
           offerType: hotelRoom.offerType || "",
           
           roomSize: hotelRoom.roomSize || "",

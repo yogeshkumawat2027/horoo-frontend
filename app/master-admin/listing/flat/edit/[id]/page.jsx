@@ -30,6 +30,7 @@ export default function EditFlat() {
     horooName: "",
     ownerName: "",
     ownerMobile: "",
+    ownerWhatsapp: "",
     anotherNo: "",
     
     // Location
@@ -40,10 +41,13 @@ export default function EditFlat() {
     mapLink: "",
     realAddress: "",
     horooAddress: "",
+    latitude: "",
+    longitude: "",
     
     // Pricing
     ownerPrice: "",
     horooPrice: "",
+    priceSuffix: "per month",
     offerType: "",
     
     // Flat Details
@@ -114,6 +118,7 @@ export default function EditFlat() {
           horooName: flat.horooName || "",
           ownerName: flat.ownerName || "",
           ownerMobile: flat.ownerMobile || "",
+          ownerWhatsapp: flat.ownerWhatsapp || "",
           anotherNo: flat.anotherNo || "",
           
           state: flat.state || "",
@@ -123,9 +128,12 @@ export default function EditFlat() {
           mapLink: flat.mapLink || "",
           realAddress: flat.realAddress || "",
           horooAddress: flat.horooAddress || "",
+          latitude: flat.latitude || "",
+          longitude: flat.longitude || "",
           
           ownerPrice: flat.ownerPrice || "",
           horooPrice: flat.horooPrice || "",
+          priceSuffix: flat.priceSuffix || "per month",
           offerType: flat.offerType || "",
           
           flatType: flat.flatType || [],
@@ -462,6 +470,20 @@ export default function EditFlat() {
               />
             </div>
             
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Owner WhatsApp
+              </label>
+              <input
+                type="tel"
+                value={formData.ownerWhatsapp}
+                onChange={(e) => handleInputChange('ownerWhatsapp', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="WhatsApp number (optional)"
+                maxLength="10"
+              />
+            </div>
+            
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Another Number (Optional)
@@ -559,6 +581,34 @@ export default function EditFlat() {
                 onChange={(e) => handleInputChange('mapLink', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Enter Google Maps link"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Latitude
+              </label>
+              <input
+                type="number"
+                step="any"
+                value={formData.latitude}
+                onChange={(e) => handleInputChange('latitude', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="e.g., 28.7041"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Longitude
+              </label>
+              <input
+                type="number"
+                step="any"
+                value={formData.longitude}
+                onChange={(e) => handleInputChange('longitude', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="e.g., 77.1025"
               />
             </div>
             
@@ -752,6 +802,22 @@ export default function EditFlat() {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Enter horoo price"
               />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Price Suffix *
+              </label>
+              <select
+                value={formData.priceSuffix}
+                onChange={(e) => handleInputChange('priceSuffix', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="per month">Per Month</option>
+                <option value="per day">Per Day</option>
+                <option value="per night">Per Night</option>
+                <option value="per hour">Per Hour</option>
+              </select>
             </div>
             
             <div>
