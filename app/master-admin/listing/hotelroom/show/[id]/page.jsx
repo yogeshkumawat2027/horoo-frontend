@@ -182,6 +182,16 @@ export default function ShowHotelRoom() {
                 </p>
               </div>
               
+              {hotelRoom.ownerWhatsapp && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-500 mb-1">WhatsApp Number</label>
+                  <p className="text-gray-900 flex items-center gap-2">
+                    <FaPhone className="text-gray-400" />
+                    {hotelRoom.ownerWhatsapp}
+                  </p>
+                </div>
+              )}
+              
               {hotelRoom.anotherNo && (
                 <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-500 mb-1">Alternative Number</label>
@@ -248,6 +258,20 @@ export default function ShowHotelRoom() {
                     <FaExternalLinkAlt />
                     View on Map
                   </a>
+                </div>
+              )}
+              
+              {hotelRoom.latitude && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-500 mb-1">Latitude</label>
+                  <p className="text-gray-900">{hotelRoom.latitude}</p>
+                </div>
+              )}
+              
+              {hotelRoom.longitude && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-500 mb-1">Longitude</label>
+                  <p className="text-gray-900">{hotelRoom.longitude}</p>
                 </div>
               )}
             </div>
