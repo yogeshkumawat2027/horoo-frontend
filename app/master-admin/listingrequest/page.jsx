@@ -4,8 +4,8 @@ import { Toaster, toast } from "react-hot-toast";
 import { FaFilter, FaSearch, FaSync, FaPhone, FaUser, FaClock, FaMapMarkerAlt, FaBuilding, FaBed, FaHome, FaWarehouse, FaHotel, FaStore, FaCheckCircle, FaExclamationCircle, FaPauseCircle, FaTimesCircle, FaBan, FaLock } from "react-icons/fa";
 
 export default function ListingRequestsPage() {
-  // const api = "https://horoo-backend-latest.onrender.com/api";
-  const api = process.env.NEXT_PUBLIC_API_URL;
+  // Backend API with fallback for production
+  const api = process.env.NEXT_PUBLIC_API_URL || "https://horoo-backend-new.vercel.app/api";
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const hasFetched = useRef(false);
@@ -20,7 +20,13 @@ export default function ListingRequestsPage() {
     try {
       setLoading(true);
 
+      console.log("Fetching from:", `${api}/listing-requests`);
       const res = await fetch(`${api}/listing-requests`);
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
       const data = await res.json();
 
       console.log("API RESPONSE:", data);
@@ -35,8 +41,9 @@ export default function ListingRequestsPage() {
         toast.error("Failed to load listing requests");
       }
     } catch (err) {
-      console.log("Fetch error:", err);
-      toast.error("Backend error while fetching listing requests");
+      console.error("Fetch error:", err);
+      console.error("API URL was:", api);
+      toast.error(`Error: ${err.message}`);
       setRequests([]);
     } finally {
       setLoading(false);
