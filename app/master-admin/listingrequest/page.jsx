@@ -4,7 +4,8 @@ import { Toaster, toast } from "react-hot-toast";
 import { FaFilter, FaSearch, FaSync, FaPhone, FaUser, FaClock, FaMapMarkerAlt, FaBuilding, FaBed, FaHome, FaWarehouse, FaHotel, FaStore, FaCheckCircle, FaExclamationCircle, FaPauseCircle, FaTimesCircle, FaBan, FaLock } from "react-icons/fa";
 
 export default function ListingRequestsPage() {
-  const api = "https://horoo-backend-latest.onrender.com/api";
+  // const api = "https://horoo-backend-latest.onrender.com/api";
+  const api = process.env.NEXT_PUBLIC_API_URL;
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const hasFetched = useRef(false);

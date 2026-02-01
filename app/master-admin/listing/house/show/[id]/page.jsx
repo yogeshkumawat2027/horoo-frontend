@@ -24,7 +24,8 @@ import {
 export default function ShowHouse() {
   const router = useRouter();
   const params = useParams();
-  const api = "https://horoo-backend-latest.onrender.com/api";
+  // const api = "https://horoo-backend-latest.onrender.com/api";
+  const api = process.env.NEXT_PUBLIC_API_URL;
   const horooId = params.id; // This will now be horooId like HHE0001
 
   const [house, setHouse] = useState(null);

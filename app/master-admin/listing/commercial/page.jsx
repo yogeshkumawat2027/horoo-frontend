@@ -16,7 +16,8 @@ import axios from "axios";
 
 export default function CommercialPage() {
   const router = useRouter();
-  const api = "https://horoo-backend-latest.onrender.com/api";
+  // const api = "https://horoo-backend-latest.onrender.com/api";
+  const api = process.env.NEXT_PUBLIC_API_URL;
   const [commercials, setCommercials] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showFilters, setShowFilters] = useState(false);

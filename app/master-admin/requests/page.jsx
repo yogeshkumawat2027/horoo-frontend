@@ -5,7 +5,8 @@ import { FaFilter, FaSearch, FaSync, FaPhone, FaIdCard, FaClock, FaUser, FaEye }
 import { useRouter } from "next/navigation";
 
 export default function RequestsPage() {
-  const api = "https://horoo-backend-latest.onrender.com/api";
+  // const api = "https://horoo-backend-latest.onrender.com/api";
+  const api = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);

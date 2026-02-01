@@ -24,7 +24,8 @@ import {
 export default function ShowHostel() {
   const router = useRouter();
   const params = useParams();
-  const api = "https://horoo-backend-latest.onrender.com/api";
+  // const api = "https://horoo-backend-latest.onrender.com/api";
+  const api = process.env.NEXT_PUBLIC_API_URL;
   const horooId = params.id; // This will now be horooId like HHL0001
 
   const [hostel, setHostel] = useState(null);

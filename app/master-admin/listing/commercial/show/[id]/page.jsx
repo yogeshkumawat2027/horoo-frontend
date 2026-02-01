@@ -23,7 +23,8 @@ import {
 export default function ShowCommercial() {
   const router = useRouter();
   const params = useParams();
-  const api = "https://horoo-backend-latest.onrender.com/api";
+  // const api = "https://horoo-backend-latest.onrender.com/api";
+  const api = process.env.NEXT_PUBLIC_API_URL;
   const [commercial, setCommercial] = useState(null);
   const [loading, setLoading] = useState(true);
   const horooId = params.id; // This will now be horooId like HCL0001
