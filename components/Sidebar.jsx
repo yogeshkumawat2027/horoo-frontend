@@ -26,7 +26,7 @@ export default function Sidebar({ logout, adminData }) {
     { name: "Listing", path: "/master-admin/listing", icon: MdBusiness },
     { name: "Booking", path: "/master-admin/booking", icon: MdBookmark },
     { name: "Requests", path: "/master-admin/requests", icon: CiSquareQuestion },
-    { name: "Listing Requests", path: "/master-admin/listingrequest", icon: FaClipboardList },
+    { name: "Listing Requests", path: "/master-admin/listing-request", icon: FaClipboardList },
     { name: "Users", path: "/master-admin/user", icon: MdPeople },
     { name: "Agent", path: "/master-admin/agent", icon: MdSupportAgent },
     { name: "Master Admin", path: "/master-admin/admin", icon: MdPerson }
