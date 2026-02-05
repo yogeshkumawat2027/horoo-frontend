@@ -19,7 +19,7 @@ import Image from 'next/image';
 
 export default function AddRoom() {
   const router = useRouter();
-  const api = "http://localhost:5000/api";
+  const api = process.env.NEXT_PUBLIC_API_URL;
 
   // UI state
   const [agreementAccepted, setAgreementAccepted] = useState(false);

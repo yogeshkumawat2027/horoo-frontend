@@ -18,7 +18,7 @@ import QuillEditor from '../../../../../components/QuillEditor';
 
 export default function AddFlat() {
   const router = useRouter();
-  const api = "http://localhost:5000/api"; // Changed to local for testing
+  const api = process.env.NEXT_PUBLIC_API_URL;
 
   // Form state
   const [formData, setFormData] = useState({
