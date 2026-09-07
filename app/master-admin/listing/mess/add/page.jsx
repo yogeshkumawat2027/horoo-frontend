@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
+import { adminApiCall, isAdminAuthenticated } from '../../../../../utils/adminApi';
 import { 
   FaUtensils,
   FaPlus, 

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
+import { adminApiCall, isAdminAuthenticated } from '../../../../../utils/adminApi';
 import { 
   FaHome, 
   FaPlus, 
@@ -321,6 +322,11 @@ export default function EditRoom() {
     try {
       setLoading(true);
       
+      if (!isAdminAuthenticated()) {
+        toast.error("Please login as admin first");
+        return;
+      }
+
       const submitData = {
         ...formData,
         nearbyAreas: nearbyAreas.filter(area => area.trim() !== ""),
@@ -329,9 +335,12 @@ export default function EditRoom() {
         quantity: Number(formData.quantity)
       };
 
-      const res = await axios.put(`${api}/room/edit/${roomId}`, submitData);
+      const res = await adminApiCall(`/room/edit/${roomId}`, {
+        method: 'PUT',
+        body: JSON.stringify(submitData)
+      });
       
-      if (res.data.success) {
+      if (res.success) {
         toast.success("Room updated successfully!");
         setTimeout(() => {
           router.push('/master-admin/listing/room');

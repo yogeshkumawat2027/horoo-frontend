@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
+import { adminApiCall, isAdminAuthenticated } from '../../../../../utils/adminApi';
 import { 
   FaHome, 
   FaPlus, 
@@ -340,6 +341,11 @@ export default function EditHouse() {
     try {
       setLoading(true);
       
+      if (!isAdminAuthenticated()) {
+        toast.error("Please login as admin first");
+        return;
+      }
+
       const submitData = {
         ...formData,
         nearbyAreas: nearbyAreas.filter(area => area.trim() !== ""),
@@ -348,9 +354,12 @@ export default function EditHouse() {
         quantity: Number(formData.quantity)
       };
 
-      const res = await axios.put(`${api}/house/edit/${houseId}`, submitData);
+      const res = await adminApiCall(`/house/edit/${houseId}`, {
+        method: 'PUT',
+        body: JSON.stringify(submitData)
+      });
       
-      if (res.data.success) {
+      if (res.success) {
         toast.success("House updated successfully!");
         setTimeout(() => {
           router.push('/master-admin/listing/house');
@@ -358,7 +367,7 @@ export default function EditHouse() {
       }
     } catch (error) {
       console.error("Error:", error);
-      toast.error(error.response?.data?.message || "Failed to update house");
+      toast.error(error.message || "Failed to update house");
     } finally {
       setLoading(false);
     }

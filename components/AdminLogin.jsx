@@ -18,7 +18,6 @@ export default function AdminLogin({ onLogin }) {
     setError('');
 
     try {
-      // const response = await fetch('https://horoo-backend-latest.onrender.com/api/auth/login', {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
         method: 'POST',
         headers: {
@@ -30,18 +29,22 @@ export default function AdminLogin({ onLogin }) {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        // Store authentication in localStorage (simple client-side storage)
         localStorage.setItem('masterAdminAuth', JSON.stringify({
           isAuthenticated: true,
+          token: data.token,
           admin: data.admin,
-          timestamp: Date.now()
+          expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString()
         }));
+        
+        localStorage.setItem('masterAdminToken', data.token);
+        
         onLogin(data.admin);
       } else {
-        setError(data.error || 'Login failed');
+        setError(data.message || data.error || 'Login failed');
       }
     } catch (error) {
       setError('Connection error. Please try again.');
+      console.error('Login error:', error);
     }
 
     setLoading(false);

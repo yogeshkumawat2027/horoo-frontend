@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
+import { adminApiCall, isAdminAuthenticated } from '../../../../../utils/adminApi';
 import { 
   FaHome, 
   FaPlus, 
@@ -274,6 +275,10 @@ export default function AddRoom() {
     e.preventDefault();
     
     if (!validateForm()) return;
+    if (!isAdminAuthenticated()) {
+      toast.error("Please login as admin first");
+      return;
+    }
 
     try {
       setLoading(true);
@@ -286,9 +291,12 @@ export default function AddRoom() {
         quantity: Number(formData.quantity)
       };
 
-      const res = await axios.post(`${api}/room`, submitData);
+      const res = await adminApiCall('/room', {
+        method: 'POST',
+        body: JSON.stringify(submitData)
+      });
       
-      if (res.data.success) {
+      if (res.success) {
         toast.success("Room added successfully!");
         setTimeout(() => {
           router.push('/master-admin/listing/room');
@@ -296,7 +304,7 @@ export default function AddRoom() {
       }
     } catch (error) {
       console.error("Error:", error);
-      toast.error(error.response?.data?.message || "Failed to add room");
+      toast.error(error.message || "Failed to add room");
     } finally {
       setLoading(false);
     }

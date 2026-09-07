@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
+import { adminApiCall, isAdminAuthenticated } from '../../../../../utils/adminApi';
+import { adminApiCall, isAdminAuthenticated } from '../../../../../utils/adminApi';
 import { 
   FaHome, 
   FaPlus, 
@@ -348,6 +350,11 @@ export default function EditFlat() {
     try {
       setLoading(true);
       
+      if (!isAdminAuthenticated()) {
+        toast.error("Please login as admin first");
+        return;
+      }
+
       const submitData = {
         ...formData,
         nearbyAreas: nearbyAreas.filter(area => area.trim() !== ""),
@@ -356,9 +363,12 @@ export default function EditFlat() {
         quantity: Number(formData.quantity)
       };
 
-      const res = await axios.put(`${api}/flat/edit/${flatId}`, submitData);
+      const res = await adminApiCall(`/flat/edit/${flatId}`, {
+        method: 'PUT',
+        body: JSON.stringify(submitData)
+      });
       
-      if (res.data.success) {
+      if (res.success) {
         toast.success("Flat updated successfully!");
         setTimeout(() => {
           router.push('/master-admin/listing/flat');
@@ -366,7 +376,7 @@ export default function EditFlat() {
       }
     } catch (error) {
       console.error("Error:", error);
-      toast.error(error.response?.data?.message || "Failed to update flat");
+      toast.error(error.message || "Failed to update flat");
     } finally {
       setLoading(false);
     }

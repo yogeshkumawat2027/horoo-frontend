@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
+import { adminApiCall, isAdminAuthenticated } from "../../../utils/adminApi";
 import { 
   FaMapMarkerAlt, 
   FaCity, 
@@ -29,19 +30,16 @@ export default function AddLocation() {
 
 
 
-  // Fetch all states
   const fetchStates = async () => {
     const res = await axios.get(`${api}/states`);
     if (res.data.success) setStates(res.data.states);
   };
 
-  // Fetch cities for a state
   const fetchCities = async (stateId) => {
     const res = await axios.get(`${api}/cities/${stateId}`);
     if (res.data.success) setCities(res.data.cities);
   };
 
-  // Fetch all cities
   const fetchAllCities = async () => {
     try {
       const res = await axios.get(`${api}/cities`);
@@ -51,7 +49,6 @@ export default function AddLocation() {
     }
   };
 
-  // Fetch areas for a city
   const fetchAreas = async (cityId) => {
     try {
       const res = await axios.get(`${api}/areas/${cityId}`);
@@ -61,7 +58,6 @@ export default function AddLocation() {
     }
   };
 
-  // Fetch all areas
   const fetchAllAreas = async () => {
     try {
       const res = await axios.get(`${api}/areas`);
@@ -77,60 +73,67 @@ export default function AddLocation() {
     fetchAllAreas();
   }, []);
 
-  // Add State
   const handleAddState = async () => {
     if (!stateName) return toast.error("Please enter state name");
+    if (!isAdminAuthenticated()) return toast.error("Please login as admin first");
     
     try {
-      const res = await axios.post(`${api}/state`, {
-        name: stateName,
+      const res = await adminApiCall('/state', {
+        method: 'POST',
+        body: JSON.stringify({ name: stateName })
       });
-      if (res.data.success) {
+      if (res.success) {
         toast.success("State added successfully!");
         setStateName("");
         fetchStates();
       }
     } catch (error) {
-      toast.error("Failed to add state");
+      toast.error(error.message || "Failed to add state");
     }
   };
 
-  // Add City
   const handleAddCity = async () => {
     if (!cityName || !selectedState) return toast.error("Please select state and enter city name");
+    if (!isAdminAuthenticated()) return toast.error("Please login as admin first");
     
     try {
-      const res = await axios.post(`${api}/city`, {
-        name: cityName,
-        stateId: selectedState,
+      const res = await adminApiCall('/city', {
+        method: 'POST',
+        body: JSON.stringify({
+          name: cityName,
+          stateId: selectedState,
+        })
       });
-      if (res.data.success) {
+      if (res.success) {
         toast.success("City added successfully!");
         setCityName("");
         fetchCities(selectedState);
-        fetchAllCities(); // Refresh all cities
+        fetchAllCities();
       }
     } catch (error) {
-      toast.error("Failed to add city");
+      toast.error(error.message || "Failed to add city");
     }
   };
 
-  // Add Area
   const handleAddArea = async () => {
     if (!areaName || !selectedCity) return toast.error("Please select city and enter area name");
+    if (!isAdminAuthenticated()) return toast.error("Please login as admin first");
     
     try {
-      const res = await axios.post(`${api}/area`, {
-        name: areaName,
-        cityId: selectedCity,
+      const res = await adminApiCall('/area', {
+        method: 'POST',
+        body: JSON.stringify({
+          name: areaName,
+          cityId: selectedCity,
+        })
       });
-      if (res.data.success) {
+      if (res.success) {
         toast.success("Area added successfully!");
         setAreaName("");
-        fetchAllAreas(); // Refresh all areas
+        fetchAllAreas();
       }
     } catch (error) {
-      toast.error("Failed to add area");
+      toast.error(error.message || "Failed to add area");
     }
   };
 

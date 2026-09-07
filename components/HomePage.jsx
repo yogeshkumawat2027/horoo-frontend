@@ -293,7 +293,7 @@ export default function HomePage() {
                 </li>
                 <li className="flex items-center">
                   <FaPhone className="text-orange-500 mr-3" />
-                  <span className="text-gray-400">+91 9166260477</span>
+                  <span className="text-gray-400">+91 8279053200</span>
                 </li>
                 <li className="flex items-center">
                   <FaEnvelope className="text-orange-500 mr-3" />

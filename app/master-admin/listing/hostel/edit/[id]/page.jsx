@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
+import { adminApiCall, isAdminAuthenticated } from '../../../../../utils/adminApi';
 import { 
   FaHome, 
   FaPlus, 
@@ -342,6 +343,11 @@ export default function EditHostel() {
     try {
       setLoading(true);
       
+      if (!isAdminAuthenticated()) {
+        toast.error("Please login as admin first");
+        return;
+      }
+
       const submitData = {
         ...formData,
         nearbyAreas: nearbyAreas.filter(area => area.trim() !== ""),
@@ -350,9 +356,12 @@ export default function EditHostel() {
         quantity: Number(formData.quantity)
       };
 
-      const res = await axios.put(`${api}/hostel/edit/${hostelId}`, submitData);
+      const res = await adminApiCall(`/hostel/edit/${hostelId}`, {
+        method: 'PUT',
+        body: JSON.stringify(submitData)
+      });
       
-      if (res.data.success) {
+      if (res.success) {
         toast.success("Hostel updated successfully!");
         setTimeout(() => {
           router.push('/master-admin/listing/hostel');
@@ -360,7 +369,7 @@ export default function EditHostel() {
       }
     } catch (error) {
       console.error("Error:", error);
-      toast.error(error.response?.data?.message || "Failed to update hostel");
+      toast.error(error.message || "Failed to update hostel");
     } finally {
       setLoading(false);
     }

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
+import { adminApiCall, isAdminAuthenticated } from '../../../../../utils/adminApi';
 import { 
   FaHome, 
   FaPlus, 
@@ -336,6 +337,10 @@ export default function EditHotelRoom() {
     e.preventDefault();
     
     if (!validateForm()) return;
+    if (!isAdminAuthenticated()) {
+      toast.error("Please login as admin first");
+      return;
+    }
 
     try {
       setLoading(true);
@@ -348,9 +353,12 @@ export default function EditHotelRoom() {
         quantity: Number(formData.quantity)
       };
 
-      const res = await axios.put(`${api}/hotel/edit/${hotelRoomId}`, submitData);
+      const res = await adminApiCall(`/hotel/edit/${hotelRoomId}`, {
+        method: 'PUT',
+        body: JSON.stringify(submitData)
+      });
       
-      if (res.data.success) {
+      if (res.success) {
         toast.success("Hotel room updated successfully!");
         setTimeout(() => {
           router.push('/master-admin/listing/hotelroom');
@@ -358,7 +366,7 @@ export default function EditHotelRoom() {
       }
     } catch (error) {
       console.error("Error:", error);
-      toast.error(error.response?.data?.message || "Failed to update hotel room");
+      toast.error(error.message || "Failed to update hotel room");
     } finally {
       setLoading(false);
     }
